@@ -1,4 +1,4 @@
-# Documentation
+# T9 Project
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://git.chalmers.se/courses/dit355/dit356-2022/t-9/documentation.git
+git remote add origin https://git.chalmers.se/courses/dit355/dit356-2022/t-9/t9-project.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://git.chalmers.se/courses/dit355/dit356-2022/t-9/documentation/-/settings/integrations)
+- [ ] [Set up project integrations](https://git.chalmers.se/courses/dit355/dit356-2022/t-9/t9-project/-/settings/integrations)
 
 ## Collaborate with your team
 
@@ -44,49 +44,98 @@ Use the built-in continuous integration in GitLab.
 
 ***
 
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+# Dentismo - Gothenburg's Best Dentistry System # 
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Finding a dentist that suits you and making a booking for an appointment should be a straight-forward process, but in Sweden today, this is not the case. The project which we are developing allows for people in Gothenburg to seamlessly make and manage bookings to the dentist of their choice. Furthermore, the dentists themselves will have accounts on the website, allowing for them to check the schedule of the clinic which they belong to as well as their individual schedules. 
+
+Our website will allow for both ease in booking as well as ease in determining which dentist is right for you. It will provide users with a map overview showing the different locations of each dentist and when a clinic is clicked on, the clinic information will be displayed. Specific functionality available to users, dentists and clinics is further demonstrated in our Functional Decomposition Model below.
 
 ## Badges
 On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
 
 ## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Here we have decided to include some of the diagrams which we haven chosen to create. We have decided upon these as we felt they were important in helping us to determine the structure, functionality, and help us with building the overall project.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+ER Diagram:
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+![ER diagram](images/ER%20Diagram.drawio.png?raw=true "ER Diagram")
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Functional Decomposition Model:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+![FDM](images/Functional%20Decomposition%20Model.drawio%20(2).png?raw=true "FDM")
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+## Installation 
+In order to run our application it is required to have MQTT, MongoDB and Node.js installed.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+MongoDB - https://www.mongodb.com/try/download/community-kubernetes-operator. 
+Installation steps for [Mac](https://github.com/joe4dev/dit032-setup/blob/master/macOS.md#mongodb), [Windows](https://github.com/joe4dev/dit032-setup/blob/master/Windows.md#mongodb) and [Linux](https://github.com/joe4dev/dit032-setup/blob/master/Linux.md#mongodb)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Node.js - https://nodejs.org/en/download/
+
+MQTT - https://mosquitto.org/download/
+
+After this is installed and setup on your computer, it is important to make sure that all the dependencies are installed on both the front-end and back-end:
+1. Open a terminal tab (either Command Prompt for Windows or Terminal for Mac)
+2. For both the client and server folder directory install the dependencies (through the command 'npm install')
+
+
+For the backend to run you will need to make some changes to your mosquitto.conf file:
+1. Head to your mosquitto folder in your computer
+2. Open the mosquitto.conf file with a text editor
+3. Locate the line #socket_domain in this file 
+4. Add these lines below and save the file
+
+port 1883
+
+listener 9001
+
+protocol websockets
+
+socket_domain ipv4
+
+allow_anonymous true
+
+5. Ensure that you start up your mosquitto by opening your terminal (you may need to run this in administrator) and typing 'net start mosquitto', for Mac this is different as you will have to run this command '/opt/homebrew/opt/mosquitto/sbin/mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf', if there are issues running this commmand, contact either the product owner and scrum master. 
+6. You can check to ensure everything is setup by then entering in the terminal 'netstat -a' and checking to see if the address '0.0.0.0:9001' is there
+
+For further clarity check out this tutorial which inspired these steps on the backend: https://iot4beginners.com/how-to-enable-mosquitto-mqtt-over-websocket-on-windows/
+
+## Run
+
+Now in order to run the front-end you simply need to open a terminal in the directory of the client folder and enter 'npm start'. If it does not open in your browser automatically you can go to http://localhost:3000 to open it manually.  
+
+To run the back-end you need to open a terminal in the directory of the server folder and enter 'node main.js'
+
+Now your application should be up and running!
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
 
-## License
-For open source projects, say how it is licensed.
+Product Owner: Wojciech Pechmann
+Scrum Master: Michael Larsson
+
+Documentation: The whole team
+
+### **Front-end team:** 
+
+Emil Eriksson - guseriemca@student.gu.se
+
+Frida Anselin - gusansfr@student.gu.se
+
+### **Back-end team:**
+
+John Berntsson - gusberjoid@student.gu.se
+
+Elisa Ahlbäck Norris - gusahlelj@student.gu.se
+
+### **Full-stack team:**
+
+Noah Manne Johansson - gusnoahjo@student.gu.se
+
+Wojciech Pechmann - guspecwo@student.gu.se
+
+Michael Larsson - guslarmiad@student.gu.se
+
 
 ## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Currently Ongoing!
