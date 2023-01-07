@@ -36,7 +36,29 @@ Git Project :
 https://git.chalmers.se/courses/dit355/dit356-2022/t-9
 
 ## Software Requirement Specification (SRS)
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+For this project we have been tasked with creating a dentist website which will allow the people of Gothenburg to book appointments through our application. From this we have been provided with some requirements, whilst we have also come up with additional requirements based upon the descriptions which we have been given.
+
+**Functional Requirements:**
+
+Account-Management:
+1. The system shall allow users to register an account.
+2. The system shall allow users to login under an account which they have created.
+3. The system shall allow users to change their password or email address.
+
+Make-Appointments:
+4. The system shall allow users to navigate to different pages through the navigational bar at the top of the page.
+5. The system shall provide a map where users can click on different clinics, also revealing the clinics information
+6. The system shall allow users to book specific appointment slots once a clinic is clicked on the map
+
+View-Appointments:
+7. The system shall allow users to see appointments that they have made along with their details
+8. The system shall allow users to delete appointments that they have made
+
+
+Software Requirement Specification (SRS): 
+○ focus on proper (SMART) phrasing of requirements 
+○ requirements shall have unique ID’s 
+○ team requirements logically 
 
 ## Software Architecture Document (SAD)
 Here we have decided to include some of the diagrams which we haven chosen to create. We have decided upon these as we felt they were important in helping us to determine the architectural structure, functionality, and help us with building the overall project. We started with an ER diagram to try to map how our database and models would look like as this would be our base. 
@@ -53,8 +75,8 @@ For our system, we have decided to use the architectural styles which have been 
 **Publish/Subscribe**
 - For Publish/Subscribe, MQTT already deals with this architectural style, as it follows a publish/subscribe protocol with the messages being sent.
 
-**Client/Server**
-- For Client/Server, this has been implemented through the structure of our application by seperating the code between the two sides. Our client side is composed of one distributed component, whilst our server side is composed of three different distributed components (these will be discussed in the Component section below).
+**Service-Based**
+- For our third architectural style, we have opted for a Service-Based style. This can be seen through our the structure of the entire project, with our topology consisting of: one user interface component, and then 3 different backend services, which all act upon a singular monolithic database. We opted for this being the main structure due to it being a more lower cost style, whilst still maintaining high ratings for Quality Attributes such as high reliability and deployability.
 
 Furthermore, for this project we have decided upon 4 different distributed which will act together to create our functioning dentist web application. The 4 components consist of:
 
@@ -82,9 +104,9 @@ Node.js - https://nodejs.org/en/download/
 
 MQTT - https://mosquitto.org/download/
 
-After this is installed and setup on your computer, it is important to make sure that all the dependencies are installed on both the front-end and back-end:
-1. Open a terminal tab (either Command Prompt for Windows or Terminal for Mac)
-2. For both the client and server folder directory install the dependencies (through the command 'npm install')
+After this is installed and setup on your computer, it is important to make sure that all the dependencies are installed:
+1. Open a terminal tab (either Command Prompt for Windows or Terminal for Mac) at the root folder for all of the components (Client, Account-Manager, Booking-Manager and Clinic-Tracker)
+2. Install the dependencies (through the command 'npm install')
 
 
 For the backend to run you will need to make some changes to your mosquitto.conf file:
@@ -110,9 +132,11 @@ For further clarity check out this tutorial which inspired these steps on the ba
 
 ## Run
 
-Now in order to run the front-end you simply need to open a terminal in the directory of the client folder and enter 'npm start'. If it does not open in your browser automatically you can go to http://localhost:3000 to open it manually.  
+Each components repository will also have a ReadMe file specifying how to get that component running, but in simplistic terms:
 
-To run the back-end you need to open a terminal in the directory of the server folder and enter 'node main.js'
+To run the front-end you simply need to open a terminal in the directory of the client folder and enter 'npm start'. If it does not open in your browser automatically you can go to http://localhost:3000 to open it manually.  
+
+To run the back-end you need to open a terminal in the directory of each backend component folder (Account-Manager, Booking-Manager and Clinic-Tracker) and enter 'node main.js'. 
 
 Now your application should be up and running!
 
