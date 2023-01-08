@@ -38,6 +38,10 @@ https://git.chalmers.se/courses/dit355/dit356-2022/t-9
 ## Software Requirement Specification (SRS)
 For this project we have been tasked with creating a dentist website which will allow the people of Gothenburg to book appointments through our application. From this we have been provided with some requirements, whilst we have also come up with additional requirements based upon the descriptions which we have been given.
 
+Functional Decomposition Model:
+
+![FDM](images/Functional%20Decomposition%20Model.drawio%20(3).png "Functional Decomposition Model")
+
 **Functional Requirements:**
 
 Account-Management:
@@ -74,17 +78,21 @@ ER Diagram:
 For our system, we have decided to use the architectural styles which have been recommended to us, which are Pipe-and-Filter, Publish/Subscribe and Client/Server. 
 
 **Pipe and Filter**  
-- We have created our backend structure to work together with MQTT in order to replicate the Pipe-and-Filter structure, where we firstly have one filter-type class (serviceTypeFilter)that will determine which entity it belongs to from the MQTT messages opCat, and then an entity-based filter class (userServFilter) which will call upon the respective service and method from the MQTT messages operation.
+- As we know with the Pipelines style architecture, this follows a set of pipes and filters in the structure with 4 different types of filters that exist. In our project, we use this structure in our backend components in order to transform and forward messages, allowing us to call the correct method. We start off with the producer which is the starting point, which for our system would be represented through our requestFilter class. The requestFilter class also serves as a Transformer filter as here we have a “transform” method which parses the payload of the MQTT message received and then forwards it. The next class which the message travels through is the serviceTypeFilter, which can be compared to a Tester filter in the pipelines style. Here we have a switch case which compares the messages operation-category to determine which type of entity it belongs to (whether that be user, dentist or appointment) and from there forward it to the correct entity filter class. The entity type filters, such as userServFilter, can also be compared to Tester filters as here we compare against the operation, which we consider as the method to be performed on the data such as login, or get-user. Based upon this operation, we call upon the correct Service class and its method. The pipelines style helps create a clear workflow within our project, allowing us to better understand the communication between the frontend and backend of our application. Furthermore, as proven through its lifetime, it has also provided nice maintainability as any errors could be tracked down easily.
+
 
 **Publish/Subscribe**
-- For Publish/Subscribe, MQTT already deals with this architectural style, as it follows a publish/subscribe protocol with the messages being sent.
+- For the Publish/Subscribe style this is implemented through the usage of MQTT in our project. MQTT is what allows communication between our client component and the other 3 distributed backend components. For this a component can publish messages to a certain topic which other components can subscribe to, allowing all of the subscribers to receive the message.
+
 
 **Service-Based**
-- For our third architectural style, we have opted for a Service-Based style. This can be seen through our the structure of the entire project, with our topology consisting of: one user interface component, and then 3 different backend services, which all act upon a singular monolithic database. We opted for this being the main structure due to it being a more lower cost style, whilst still maintaining high ratings for Quality Attributes such as high reliability and deployability.
+- The last architectural style which our project uses is the Service-based architecture style. For our project, we follow this style with a topology containing 1 user interface (our client), 3 different backend services (which are distributed components) and a singular monolithic database. This acts as the main structure behind our distributed architecture and was chosen for its lower cost, simplicity, but also its higher ratings with other Quality Attributes like deployability and reliability.
 
 Furthermore, for this project we have decided upon 4 different distributed which will act together to create our functioning dentist web application. The 4 components consist of:
 
-Component Diagram
+Component Diagram:
+
+![Component diagram](images/Component%20Diagram.drawio.png "Component Diagram")
 
 1. Client - As the name suggests, the client component will act as the frontend of our web application containing our UI, and small functionalities which will call upon MQQT messages that will eventually communicate with the backend. For the frontend we have decided to use React as this is a popular language that works well with our system.
 
@@ -153,7 +161,3 @@ One part of Scrum which we have modified slightly is the Scrum Daily meetings. F
 Furthermore we also do follow Scrum roles with one Product Owner (Wojciech Pechmann), one Scrum Master (Michael Larsson) and then the rest of the team acts as the Scrum team. We have chosen to follow the defined roles, but to re-iterate, our Product Owner acts as the expert on our Product, working with our team to define most of the user stories. The PO also keeps track of the products development and ensures that it satisfies the needs of the customer. The Scrum Master will take charge of the weekly sprints, deciding with the PO which user stories to take on during the sprint, and also taking charge during the 3 meetings (Planning, Review and Retrospective).
 
 
-
-
-## Project status
-Currently Ongoing!
