@@ -41,24 +41,28 @@ For this project we have been tasked with creating a dentist website which will 
 **Functional Requirements:**
 
 Account-Management:
-1. The system shall allow users to register an account.
-2. The system shall allow users to login under an account which they have created.
-3. The system shall allow users to change their password or email address.
+
+1. The system shall allow users to register an account
+2. The system shall allow users to login under an account which they have created
+3. The system shall allow users to change their password or email address
 
 Make-Appointments:
-4. The system shall allow users to navigate to different pages through the navigational bar at the top of the page.
+
+4. The system shall allow users to navigate to different pages through the navigational bar at the top of the page
 5. The system shall provide a map where users can click on different clinics, also revealing the clinics information
 6. The system shall allow users to book specific appointment slots once a clinic is clicked on the map
 
 View-Appointments:
+
 7. The system shall allow users to see appointments that they have made along with their details
 8. The system shall allow users to delete appointments that they have made
 
 
-Software Requirement Specification (SRS): 
-○ focus on proper (SMART) phrasing of requirements 
-○ requirements shall have unique ID’s 
-○ team requirements logically 
+**Nonfunctional Requirements:**
+1. The website shall maintain a consistent User Interface, allowing users to access any of the website's core functionality within 4 clicks
+2. The user shall receive confirmation of the booking within a second of pressing the ‘Book’ button
+3. The website shall be able to correctly handle multiple concurrent booking attempts to the same slot
+4. The website shall have an availability of 99% (2-nines)
 
 ## Software Architecture Document (SAD)
 Here we have decided to include some of the diagrams which we haven chosen to create. We have decided upon these as we felt they were important in helping us to determine the architectural structure, functionality, and help us with building the overall project. We started with an ER diagram to try to map how our database and models would look like as this would be our base. 
