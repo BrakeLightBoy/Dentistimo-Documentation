@@ -10,23 +10,23 @@ Our website will allow for both ease in booking as well as ease in determining w
 Our team consists of: 
 ### **Front-end team:** 
 
-- Emil Eriksson - guseriemca@student.gu.se
+- Emil Eriksson [emier] (git.chalmers.se/emier) - guseriemca@student.gu.se
 
-- Frida Anselin - gusansfr@student.gu.se
+- Frida Anselin [anselin] (git.chalmers.se/anselin) - gusansfr@student.gu.se
 
 ### **Back-end team:**
 
-- John Berntsson - gusberjoid@student.gu.se
+- John Berntsson [johnbern] (git.chalmers.se/johnbern) - gusberjoid@student.gu.se
 
-- Elisa Ahlbäck Norris - gusahlelj@student.gu.se
+- Elisa Ahlbäck Norris [norris] (git.chalmers.se/norris) - gusahlelj@student.gu.se
 
 ### **Full-stack team:**
 
-- Noah Manne Johansson - gusnoahjo@student.gu.se
+- Noah Manne Johansson [noahma] (git.chalmers.se/LegitProgrammer) - gusnoahjo@student.gu.se
 
-- Wojciech Pechmann - guspecwo@student.gu.se (Also is the Product Owner)
+- Wojciech Pechmann [wojpec] (git.chalmers.se/wojpec) - guspecwo@student.gu.se (Also is the Product Owner)
 
-- Michael Larsson - guslarmiad@student.gu.se (Also is the Scrum Master)
+- Michael Larsson [michlars] (git.chalmers.se/michlars) - guslarmiad@student.gu.se (Also is the Scrum Master)
 
 
 ### Relevant Links
